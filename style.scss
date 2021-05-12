@@ -1,0 +1,32 @@
+.hljs code {
+  font-size: 10pt;
+  font-family: 'Consolas', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+    monospace;
+}
+
+.source-code {
+  font-family: 'Consolas', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+    monospace;
+}
+
+.hljs {
+  background-color: transparent !important;
+  border: 1px solid black;
+  white-space: pre-wrap;
+}
+
+.default-style {
+  @import 'highlight.js/scss/default';
+}
+
+.github-style {
+  @import 'highlight.js/scss/github';
+}
+
+.vs-style {
+  @import 'highlight.js/scss/vs';
+}
+
+.xcode-style {
+  @import 'highlight.js/scss/xcode';
+}

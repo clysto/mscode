@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mscode</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <strong>MSCode</strong>
+        </a>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="mt-5">
+          <div class="row g-2 mb-2">
+            <div class="col-md">
+              <div class="form-floating">
+                <select class="form-select" id="language-select"></select>
+                <label for="floatingSelect">Language</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <select class="form-select" id="style-select"></select>
+                <label for="floatingSelect">Style</label>
+              </div>
+            </div>
+            <div class="col-md text-end">
+              <button type="button" class="btn btn-primary" id="highlight-btn">
+                Highlight
+              </button>
+            </div>
+          </div>
+          <div class="mb-4">
+            <textarea
+              class="form-control source-code"
+              id="source-code"
+              rows="10"
+            ></textarea>
+          </div>
+        </div>
+        <div id="highlight"></div>
+      </div>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
