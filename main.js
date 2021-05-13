@@ -1,6 +1,7 @@
 import './style.scss';
-import { listLanguages, highlight } from 'highlight.js';
+import hljs, { highlight, registerLanguage } from 'highlight.js/lib/core';
 import { Tooltip } from 'bootstrap';
+import { getLanguage, listLanguages } from './languages';
 
 const tooltipTriggerList = [].slice.call(
   document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -13,11 +14,11 @@ tooltipTriggerList.map(function (tooltipTriggerEl) {
 const languageSelect = document.getElementById('language-select');
 const allLanguages = listLanguages();
 
-allLanguages.forEach((lang) => {
+allLanguages.forEach((languageName) => {
   const option = document.createElement('option');
-  option.value = lang;
-  option.innerText = lang;
-  if (lang === 'plaintext') {
+  option.value = languageName;
+  option.innerText = languageName;
+  if (languageName === 'plaintext') {
     option.selected = true;
   }
   languageSelect.appendChild(option);
@@ -33,11 +34,11 @@ allStyles.forEach((style) => {
 });
 
 let sourceCode = localStorage.getItem('code') || '';
-let language = localStorage.getItem('language') || 'plaintext';
+let languageName = localStorage.getItem('languageName') || 'plaintext';
 let style = localStorage.getItem('style') || 'default';
 
 document.getElementById('source-code').value = sourceCode;
-document.getElementById('language-select').value = language;
+document.getElementById('language-select').value = languageName;
 document.getElementById('style-select').value = style;
 document.getElementById('highlight').className = `${style}-style`;
 
@@ -47,8 +48,8 @@ document.getElementById('source-code').onchange = (e) => {
 };
 
 document.getElementById('language-select').onchange = (e) => {
-  language = e.target.value;
-  localStorage.setItem('language', language);
+  languageName = e.target.value;
+  localStorage.setItem('languageName', languageName);
 };
 
 document.getElementById('style-select').onchange = (e) => {
@@ -57,14 +58,19 @@ document.getElementById('style-select').onchange = (e) => {
   localStorage.setItem('style', style);
 };
 
-document.getElementById('highlight-btn').onclick = () => {
+document.getElementById('highlight-btn').onclick = async () => {
+  if (!hljs.getLanguage(languageName)) {
+    const language = (await getLanguage(languageName)).default;
+    registerLanguage(languageName, language);
+  }
+
   if (!sourceCode) {
     document.getElementById('highlight').innerHTML = '';
     return;
   }
 
   const highlightCode = highlight(sourceCode, {
-    language,
+    language: languageName,
   });
 
   const title = document.createElement('h5');
