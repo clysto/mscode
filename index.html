@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Use this website to highlight your source code, and then you can copy the highlighted code to ms word."
+    />
     <title>MSCode</title>
   </head>
   <body>
@@ -23,6 +27,7 @@
           class="btn btn-dark"
           href="https://github.com/clysto/mscode"
           target="_blank"
+          rel="noopener"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +63,15 @@
             </div>
           </div>
           <div class="mb-2">
-            <textarea
-              class="form-control source-code"
-              id="source-code"
-              rows="10"
-            ></textarea>
+            <div class="form-floating">
+              <textarea
+                class="form-control source-code"
+                id="source-code"
+                rows="10"
+                style="height: unset"
+              ></textarea>
+              <label for="source-code" class="form-label">Source Code</label>
+            </div>
           </div>
           <button
             type="button"
