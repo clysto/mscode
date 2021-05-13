@@ -5,7 +5,7 @@ module.exports = ({ env }) => {
     plugins: [
       env === 'production'
         ? purgecss({
-            content: ['./**/*.html'],
+            content: ['index.html', 'main.js'],
           })
         : false,
     ],

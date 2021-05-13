@@ -16,6 +16,8 @@
     monospace;
 }
 
+/* purgecss start ignore */
+
 .hljs {
   background-color: transparent !important;
   border: 1px solid $black;
@@ -37,3 +39,5 @@
 .xcode-style {
   @import 'highlight.js/scss/xcode';
 }
+
+/* purgecss end ignore */
