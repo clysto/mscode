@@ -1,6 +1,14 @@
-import 'bootstrap/scss/bootstrap.scss';
 import './style.scss';
 import { listLanguages, highlight } from 'highlight.js';
+import { Tooltip } from 'bootstrap';
+
+const tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+
+tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new Tooltip(tooltipTriggerEl);
+});
 
 const languageSelect = document.getElementById('language-select');
 const allLanguages = listLanguages();
@@ -50,13 +58,21 @@ document.getElementById('style-select').onchange = (e) => {
 };
 
 document.getElementById('highlight-btn').onclick = () => {
+  if (!sourceCode) {
+    document.getElementById('highlight').innerHTML = '';
+    return;
+  }
+
   const highlightCode = highlight(sourceCode, {
     language,
   });
 
+  const title = document.createElement('h5');
+  title.innerHTML = 'Result:';
   const highlightCodePre = document.createElement('pre');
   highlightCodePre.className = `hljs`;
   highlightCodePre.innerHTML = `<code>${highlightCode.value}</code>`;
   document.getElementById('highlight').innerHTML = '';
+  document.getElementById('highlight').appendChild(title);
   document.getElementById('highlight').appendChild(highlightCodePre);
 };

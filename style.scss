@@ -1,7 +1,14 @@
+@import 'bootstrap/scss/bootstrap.scss';
+
 .hljs code {
   font-size: 10pt;
   font-family: 'Consolas', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
     monospace;
+}
+
+.bi {
+  display: inline-block;
+  vertical-align: -0.125em;
 }
 
 .source-code {
@@ -11,7 +18,7 @@
 
 .hljs {
   background-color: transparent !important;
-  border: 1px solid black;
+  border: 1px solid $black;
   white-space: pre-wrap;
 }
 
